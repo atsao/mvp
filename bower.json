@@ -1,0 +1,22 @@
+{
+  "name": "pickpal",
+  "description": "PickPal is an app to help you make decisions for choosing a place to eat, drink, or chill.",
+  "main": "server.js",
+  "authors": [
+    "Andrew Tsao"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/atsao/2016-05-mvp",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "latest",
+    "angular-ui-router": "latest"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "pickpal",
+  "version": "1.0.0",
+  "description": "PickPal is an app to help you make decisions for choosing a place to eat, drink, or chill.",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atsao/2016-05-mvp.git"
+  },
+  "author": "Andrew Tsao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atsao/2016-05-mvp/issues"
+  },
+  "homepage": "https://github.com/atsao/2016-05-mvp#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.20"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "browser-sync": "^2.12.12",
+    "cssnano": "^3.7.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.0.7",
+    "gulp-postcss": "^6.1.1"
+  }
+}

@@ -1,25 +1,31 @@
-# Project Name #
+# PickPal #
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+PickPal is an app to help you make decisions! Not sure where to eat? Need a suggestion for a good bar? Use PickPal and you'll get a curated small set of options to make a pick! Spend more time enjoying yourself than juggling too many options.
 
 ## Problem ##
-  > Describe the problem your product solves.
+Studies have shown that consumers who are offered too many choices are left unhappier when making a choice. PickPal makes the burden of too many choices less intimidating.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+PickPal gives users a small number of choices and a short time-limit to make a decision. No worries if time runs out; a random choice will be made.
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+Enter your location, pick what you're looking for, and choose a spot to visit!
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+
 
 ----
 
 ## Features List ##
-  > List the features which will be part of the product.
+- **Choice Dashboard**: 
+---  df
+- Timer
+--- Random choice
+- asfads
 
 ## Task List ##
-  > List the atomic tasks required to complete the features list.
-  
+- Yelp API
+--- Location search
+--- Random set of options
+- 
