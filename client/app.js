@@ -49,7 +49,7 @@ pickpal.factory('Yelp', function($http) {
         url: '/api/pick',
         data: pickData
       }).then(function(data) {
-        return;
+        console.log(data);
       }, function(error) {
         console.error(error);
       })

@@ -14,7 +14,7 @@ module.exports = function(server) {
   server.route('/').get(function(req, res) {
     // res.end('WADDUP BITCH');
     console.log('inside server GET');
-    yelp.search({ term: 'food', location: 'San Francisco' })
+    yelp.search({ term: 'bbq', location: 'San Francisco' })
     .then(function (data) {
       console.log(data);
       res.json(data);
