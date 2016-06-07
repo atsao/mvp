@@ -12,9 +12,7 @@ var yelp = new Yelp({
 
 module.exports = function(server) {
   server.route('/').post(function(req, res) {
-    // console.log('req.body.term: ', req.body.term);
     console.log('req.body: ', req.body);
-    // yelp.search({ term: 'bbq', location: 'San Francisco' })
     yelp.search(req.body)
     .then(function (data) {
       res.json(data);

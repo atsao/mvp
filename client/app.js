@@ -31,7 +31,7 @@ pickpal.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     });
 
   $locationProvider.html5Mode(true);
-  $urlRouterProvider.otherwise('pick');
+  $urlRouterProvider.otherwise('');
 });
 
 // pickpal.run(function($rootScope, $state, $urlRouter, Yelp) {
@@ -50,8 +50,8 @@ pickpal.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
   $scope.pickData = {};
+  // $scope.pickData.term = 'food'; // default
 
-  // $scope.pickData.address = $scope.result;
   // Autocomplete parameters
   $scope.options = null;
   $scope.details = null;
@@ -71,7 +71,6 @@ pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
     // return deferred.promise;
     // $scope.data = JSON.stringify(Yelp.getData());
     return Yelp.getData($scope.pickData).then(function(data) {
-      console.log('retrieving data...');
       console.log('data: ', data);
       $scope.data = data;
     }, function(error) {
@@ -80,8 +79,8 @@ pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
   }
 
   $scope.startOver = function() {
-    $scope.pickData.address = '';
-    $scope.pickData.mood = '';
+    $scope.pickData.location = '';
+    $scope.pickData.term = '';
     $scope.pickForm.$setPristine();
   }
 }]);
@@ -111,17 +110,9 @@ pickpal.factory('Yelp', function(YelpService, $http) {
     // }
 
   factory.getData = function(pickData) {
-    console.log('pickData: ', pickData);
-    console.log('type of pickData:: ', typeof pickData);
-    // return YelpService.requestData($http({
-    //   method: 'GET',
-    //   url: '/api/pick',
-    //   // data: JSON.parse(pickData),
-    //   contentType: 'application/json'
-    // }).then(function(data) {
-    //   return data;
-    // }));
-        return $http({
+    if (pickData.term === null) { pickData.term = 'food'; };
+
+    return $http({
       method: 'POST',
       url: '/api/pick',
       data: pickData,
@@ -151,5 +142,21 @@ pickpal.service('YelpService', function($q) {
 
       return deferred.promise;
     }
+  }
+});
+
+// DIRECTIVES
+pickpal.directive('formEnter', function() {
+  return function(scope, element, attr) {
+    element.bind('keydown keypress', function(e) {
+      if (e.which == 13) {
+        console.log('enter pressed!');
+        scope.$apply(function() {
+          scope.$eval(attr.formEnter);
+        })
+      }
+      // return false;
+      e.preventDefault();
+    });
   }
 });
