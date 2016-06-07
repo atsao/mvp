@@ -1,7 +1,8 @@
 var pickpal = angular.module('pickpal', [
   'ui.router',
   'ngAnimate',
-  'ngAutocomplete'
+  'ngAutocomplete',
+  'timer'
 ]);
 
 // App routes
@@ -23,6 +24,10 @@ pickpal.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('pick.choose', {
       url: '/choose',
       templateUrl: 'views/pick-choose.html',
+      children: [{
+        name: 'choose.choices',
+        templateUrl: 'views/pick-choose-choices.html'
+      }]
       // resolve: {
       //   dataSuccess: function(Yelp) {
       //     return Yelp.getData({test: 'test'});
@@ -50,7 +55,8 @@ pickpal.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
   $scope.pickData = {};
-  // $scope.pickData.term = 'food'; // default
+  $scope.data = [];
+  $scope.choices = [];
 
   // Autocomplete parameters
   $scope.options = null;
@@ -70,9 +76,14 @@ pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
 
     // return deferred.promise;
     // $scope.data = JSON.stringify(Yelp.getData());
-    return Yelp.getData($scope.pickData).then(function(data) {
-      console.log('data: ', data);
-      $scope.data = data;
+    return Yelp.getData($scope.pickData).then(function(results) {
+      console.log('results: ', results);
+      $scope.data = results.data.businesses;
+      console.log('data!', $scope.data);
+      $scope.generateChoices();
+      $scope.generateChoices();
+      $scope.generateChoices();
+      console.log('Random choices:', $scope.choices);
     }, function(error) {
       console.error(error);
     });
@@ -81,7 +92,25 @@ pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
   $scope.startOver = function() {
     $scope.pickData.location = '';
     $scope.pickData.term = '';
+    $scope.data = [];
+    $scope.choices = [];
     $scope.pickForm.$setPristine();
+  }
+
+  $scope.generateChoices = function() {
+    var index = Math.floor(Math.random() * $scope.data.length);
+    $scope.data.splice(index, 1);
+    $scope.choices.push($scope.data[index]);
+  }
+
+  $scope.timesUp = function() {
+    console.log('Times\'s up!');
+  }
+
+  $scope.makeChoice = function($event, choice) {
+    console.log($event.currentTarget);
+    console.log('choice: ', choice);
+    $scope.$broadcast('timer-stop');
   }
 }]);
 
@@ -159,4 +188,14 @@ pickpal.directive('formEnter', function() {
       e.preventDefault();
     });
   }
+});
+
+pickpal.directive('autofocus', function() {
+  return {
+    link: function($scope, $element, attrs) {
+      setTimeout(function() {
+        $element[0].focus();
+      }, 100);
+    }
+  };
 });

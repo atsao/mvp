@@ -1,5 +1,5 @@
 <div class="form-group">
   <label for="address">Where are you?</label>
-  <input type="text" id="address" name="location" placeholder="Enter an address" ng-autocomplete ng-model="pickData.location" options="options" details="details" required>
+  <input type="text" id="address" name="location" placeholder="Enter an address" tabindex=0 autofocus ng-autocomplete ng-model="pickData.location" options="options" details="details" required>
   <button ui-sref="pick.mood" ng-disabled="pickForm.location.$invalid">Next</a>
 </div>
