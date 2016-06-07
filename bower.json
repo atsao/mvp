@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "angular": "latest",
-    "angular-ui-router": "latest"
+    "angular-ui-router": "latest",
+    "angular-animate": "latest"
   }
 }

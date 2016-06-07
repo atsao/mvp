@@ -4,7 +4,7 @@
   "description": "PickPal is an app to help you make decisions for choosing a place to eat, drink, or chill.",
   "main": "app.js",
   "scripts": {
-    "test": "npm test"
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,12 @@
   "homepage": "https://github.com/atsao/2016-05-mvp#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "browser-sync": "^2.12.12",
     "express": "^4.13.4",
-    "mongoose": "^4.4.20"
+    "mongoose": "^4.4.20",
+    "morgan": "^1.7.0",
+    "q": "^1.4.1",
+    "yelp": "^1.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",

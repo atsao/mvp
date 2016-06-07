@@ -8,9 +8,9 @@ var gulp      = require('gulp'),
 // the paths to our app files
 var paths = {
   // all our client app js files, not including 3rd party js files
-  scripts: ['app/**/*.js'],
-  html: ['public/**/*.html'],
-  styles: ['public/styles/style.css']
+  scripts: ['client/**/*.js'],
+  html: ['client/**/*.html'],
+  styles: ['client/styles/style.css']
 };
 
 // any changes made to your
@@ -24,7 +24,7 @@ gulp.task('start', ['serve'],function () {
     injectChanges: true,
     files: paths.scripts.concat(paths.html, paths.styles),
     proxy: 'localhost:8000',
-    port: 8888
+    // port: 8888
   });
 });
 
@@ -44,7 +44,7 @@ gulp.task('start', ['serve'],function () {
 
 // start our node server using nodemon
 gulp.task('serve', function() {
-  nodemon({script: './server/server.js', ignore: 'node_modules/**/*.js'});
+  nodemon({script: './server.js', ignore: 'node_modules/**/*.js'});
 });
 
 gulp.task('default', ['start']);
