@@ -1,7 +1,7 @@
 var pickpal = angular.module('pickpal', [
   'ui.router',
   'ngAnimate',
-  // 'YelpServices'
+  'ngAutocomplete'
 ]);
 
 // App routes
@@ -60,8 +60,12 @@ pickpal.config(function($stateProvider, $urlRouterProvider) {
 //   });
 // });
 
-pickpal.controller('pickController', ['$scope', 'Yelp', '$q', function($scope, Yelp, $q) {
+pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
   $scope.pickData = {};
+
+  $scope.pickData.address = $scope.result;
+  $scope.options = null;
+  $scope.details = null;
 
   $scope.processForm = function() {
     // var deferred = $q.defer();
@@ -79,10 +83,17 @@ pickpal.controller('pickController', ['$scope', 'Yelp', '$q', function($scope, Y
     // $scope.data = JSON.stringify(Yelp.getData());
     return Yelp.getData($scope.pickData).then(function(data) {
       console.log('retrieving data...');
+      console.log('data: ', data);
       $scope.data = data;
     }, function(error) {
       console.error(error);
     })
+  }
+
+  $scope.startOver = function() {
+    $scope.pickData.address = '';
+    $scope.pickData.mood = '';
+    $scope.pickForm.$setPristine();
   }
 }]);
 

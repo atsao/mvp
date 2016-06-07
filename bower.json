@@ -18,6 +18,10 @@
   "dependencies": {
     "angular": "latest",
     "angular-ui-router": "latest",
-    "angular-animate": "latest"
+    "angular-animate": "latest",
+    "ngAutocomplete": "latest"
+  },
+  "resolutions": {
+    "angular": "^1.0.8"
   }
 }

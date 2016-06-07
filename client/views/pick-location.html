@@ -1,6 +1,6 @@
 <div class="form-group">
   <label for="address">Where are you?</label>
-  <input type="text" name="address" placeholder="Enter an address" ng-model="pickData.address">
+  <input type="text" id="address" placeholder="Enter an address" ng-autocomplete ng-model="pickData.address" options="options" details="details" required>
 </div>
 
 <a ui-sref="pick.mood">Next</a>
