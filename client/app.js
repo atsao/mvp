@@ -5,7 +5,7 @@ var pickpal = angular.module('pickpal', [
 ]);
 
 // App routes
-pickpal.config(function($stateProvider, $urlRouterProvider) {
+pickpal.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('pick', {
       url: '/pick',
@@ -23,18 +23,6 @@ pickpal.config(function($stateProvider, $urlRouterProvider) {
     .state('pick.choose', {
       url: '/choose',
       templateUrl: 'views/pick-choose.html',
-      // resolve: {
-      //   dataSuccess: ['$q', 'Yelp', function($q, Yelp) {
-      //     var deferred = $q.defer();
-      //     if (Yelp.dataSuccess) {
-      //       deferred.resolve();
-      //     } else {
-      //       deferred.reject('Data not received');
-      //     }
-
-      //     return deferred.promise;
-      //   }]
-      // }
       resolve: {
         dataSuccess: function(Yelp) {
           return Yelp.getData();
@@ -42,7 +30,7 @@ pickpal.config(function($stateProvider, $urlRouterProvider) {
       }
     });
 
-  // $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('pick');
 });
 
@@ -63,7 +51,8 @@ pickpal.config(function($stateProvider, $urlRouterProvider) {
 pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
   $scope.pickData = {};
 
-  $scope.pickData.address = $scope.result;
+  // $scope.pickData.address = $scope.result;
+  // Autocomplete parameters
   $scope.options = null;
   $scope.details = null;
 
@@ -87,7 +76,7 @@ pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
       $scope.data = data;
     }, function(error) {
       console.error(error);
-    })
+    });
   }
 
   $scope.startOver = function() {
@@ -97,9 +86,11 @@ pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
   }
 }]);
 
-// // SERVICES
+// FACTORIES
 pickpal.factory('Yelp', function(YelpService, $http) {
-  return {
+  var factory = {};
+
+  // return {
     // dataSuccess: false,
 
     // getData: function(pickData) {
@@ -119,16 +110,22 @@ pickpal.factory('Yelp', function(YelpService, $http) {
     //   });
     // }
 
-    getData: function(pickData) {
-      return YelpService.requestData($http({
-        method: 'GET',
-        url: '/api/pick',
-        data: pickData
-      }));
-    }
-  }
+  factory.getData = function(pickData) {
+    return YelpService.requestData($http({
+      method: 'GET',
+      url: '/api/pick',
+      data: pickData
+    }));
+  };
+
+  // factory.
+
+  
+
+  return factory;
 });
 
+// SERVICES
 pickpal.service('YelpService', function($q) {
   return {
     requestData: function(httpPromise) {
