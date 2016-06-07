@@ -12,11 +12,8 @@ var yelp = new Yelp({
 
 module.exports = function(server) {
   server.route('/').get(function(req, res) {
-    // res.end('WADDUP BITCH');
-    console.log('inside server GET');
     yelp.search({ term: 'bbq', location: 'San Francisco' })
     .then(function (data) {
-      console.log(data);
       res.json(data);
     })
     .catch(function (err) {
