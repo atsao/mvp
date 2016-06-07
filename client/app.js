@@ -23,11 +23,11 @@ pickpal.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('pick.choose', {
       url: '/choose',
       templateUrl: 'views/pick-choose.html',
-      resolve: {
-        dataSuccess: function(Yelp) {
-          return Yelp.getData();
-        }
-      }
+      // resolve: {
+      //   dataSuccess: function(Yelp) {
+      //     return Yelp.getData({test: 'test'});
+      //   }
+      // }
     });
 
   $locationProvider.html5Mode(true);
@@ -111,11 +111,24 @@ pickpal.factory('Yelp', function(YelpService, $http) {
     // }
 
   factory.getData = function(pickData) {
-    return YelpService.requestData($http({
-      method: 'GET',
+    console.log('pickData: ', pickData);
+    console.log('type of pickData:: ', typeof pickData);
+    // return YelpService.requestData($http({
+    //   method: 'GET',
+    //   url: '/api/pick',
+    //   // data: JSON.parse(pickData),
+    //   contentType: 'application/json'
+    // }).then(function(data) {
+    //   return data;
+    // }));
+        return $http({
+      method: 'POST',
       url: '/api/pick',
-      data: pickData
-    }));
+      data: pickData,
+      contentType: 'application/json'
+    }).then(function(data) {
+      return data;
+    });
   };
 
   // factory.

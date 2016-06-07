@@ -2,7 +2,7 @@
 
 // Modules
 var express = require('express');
-var parser = require('body-parser');
+var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var path = require('path');
 var morgan = require('morgan');
@@ -19,8 +19,8 @@ var port = process.env.PORT || 8080;
 server.use(morgan('dev'));
 
 // Parse data as application/json
-server.use(parser.urlencoded({ extended: true }));
-server.use(parser.json());
+// server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
 
 var pickRouter = express.Router();
 
