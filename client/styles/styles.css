@@ -1,0 +1,26 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.mini-nav {
+
+}
+
+.mini-nav li {
+  color: #fff;
+  display: inline-block;
+}
+
+.pick-container {
+  background: #3f3f3f;
+  margin: 40px 0;
+  padding: 20px;
+}
+
+.pick-label {
+  font-size: 3em;
+  color: #fff;
+  text-align: center;
+}

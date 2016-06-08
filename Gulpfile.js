@@ -28,20 +28,6 @@ gulp.task('start', ['serve'],function () {
   });
 });
 
-// gulp.task('sass', function() {
-//   return gulp.src('./client/styles/sass/**/*.scss')
-//     .pipe(sass())
-//     .pipe(gulp.dest('./client/styles/'))
-// });
-
-// gulp.task('sass-watch', function() {
-//   gulp.watch('./client/styles/sass/**/*.scss', ['sass']);
-// });
-
-// gulp.task('karma', shell.task([
-//   'karma start'
-// ]));
-
 // start our node server using nodemon
 gulp.task('serve', function() {
   nodemon({script: './server.js', ignore: 'node_modules/**/*.js'});

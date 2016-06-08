@@ -1,9 +1,9 @@
-<div>
+<div class="form-group">
   <h2>Make a choice!</h2>
   <timer countdown="10" interval="1000" finish-callback="timesUp()">{{seconds}} second{{secondsS}}</timer>
   <ul>
-    <li ng-repeat="choice in choices">
-      <a href="" ng-click="makeChoice($event, choice)"><img src="{{ choice.image_url }}" />
+    <li ng-class="{ 'choice-picked': $index == selection }" ng-repeat="choice in choices">
+      <a href="" ng-click="makeChoice($index)"><img src="{{ choice.image_url }}" />
       <h4>{{ choice.name }}</h4>
       <img src="{{ choice.rating_img_url }}" />({{ choice.review_count }} reviews)
       {{ choice.location.display_address.join('\n') }}

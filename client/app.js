@@ -58,6 +58,9 @@ pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
   $scope.data = [];
   $scope.choices = [];
 
+  $scope.selection = -1;
+  $scope.timedOut = false;
+
   // Autocomplete parameters
   $scope.options = null;
   $scope.details = null;
@@ -94,23 +97,27 @@ pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
     $scope.pickData.term = '';
     $scope.data = [];
     $scope.choices = [];
+    $scope.selection = -1;
     $scope.pickForm.$setPristine();
   }
 
   $scope.generateChoices = function() {
     var index = Math.floor(Math.random() * $scope.data.length);
-    $scope.data.splice(index, 1);
     $scope.choices.push($scope.data[index]);
+    $scope.data.splice(index, 1);
   }
 
   $scope.timesUp = function() {
     console.log('Times\'s up!');
+    var index = Math.floor(Math.random() * $scope.choices.length);
+    // $scope.selection = index;
+    $scope.makeChoice(index);
+    $scope.timedOut = true;
   }
 
-  $scope.makeChoice = function($event, choice) {
-    console.log($event.currentTarget);
-    console.log('choice: ', choice);
+  $scope.makeChoice = function($index) {
     $scope.$broadcast('timer-stop');
+    $scope.selection = $index;
   }
 }]);
 
