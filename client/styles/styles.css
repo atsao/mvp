@@ -24,3 +24,28 @@
   color: #fff;
   text-align: center;
 }
+
+.choices li {
+  background: #efefef;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 0 10px;
+  padding: 15px;
+  width: 30%;
+}
+
+.choices {
+  list-style: none;
+}
+
+.choices a {
+  display: block;
+}
+
+.timer {
+  display: block;
+  font-size: 2em;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+}

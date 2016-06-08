@@ -1,8 +1,8 @@
 <div class="form-group">
-  <h2>Make a choice!</h2>
-  <timer countdown="10" interval="1000" finish-callback="timesUp()">{{seconds}} second{{secondsS}}</timer>
-  <ul>
-    <li ng-class="{ 'choice-picked': $index == selection }" ng-repeat="choice in choices">
+  <h2 class="pick-label">Make a choice!</h2>
+  <timer class="timer" countdown="10" interval="1000" finish-callback="timesUp()">{{seconds}} second{{secondsS}}</timer>
+  <ul class="choices">
+    <li ng-class="{ 'choice-picked': $index == selection } choice-container" ng-repeat="choice in choices">
       <a href="" ng-click="makeChoice($index)"><img src="{{ choice.image_url }}" />
       <h4>{{ choice.name }}</h4>
       <img src="{{ choice.rating_img_url }}" />({{ choice.review_count }} reviews)
@@ -11,6 +11,9 @@
       </a>
     </li>
   </ul>
-  <a ui-sref="pick" ng-click="startOver()">Start Over</a>
+  <!-- <a ui-sref="pick" ng-click="startOver()">Start Over</a> -->
+  <div class="col-lg-4 col-lg-offset-4">
+    <a class="btn btn-success btn-lg btn-block" ui-sref="pick" ng-click="startOver()">Start Over</a>
+  </div>
   
 </div>
