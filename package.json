@@ -2,7 +2,7 @@
   "name": "pickpal",
   "version": "1.0.0",
   "description": "PickPal is an app to help you make decisions for choosing a place to eat, drink, or chill.",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "start": "gulp"
   },

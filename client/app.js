@@ -8,6 +8,10 @@ var pickpal = angular.module('pickpal', [
 // App routes
 pickpal.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
+    .state('home', {
+      url: '/',
+      // templateUrl: 'index.html'
+    })
     .state('pick', {
       url: '/pick',
       templateUrl: 'views/pick.html',
@@ -36,7 +40,7 @@ pickpal.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     });
 
   $locationProvider.html5Mode(true);
-  $urlRouterProvider.otherwise('');
+  $urlRouterProvider.otherwise('home');
 });
 
 // pickpal.run(function($rootScope, $state, $urlRouter, Yelp) {
@@ -53,13 +57,14 @@ pickpal.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 //   });
 // });
 
-pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
+pickpal.controller('pickController', function($scope, Yelp) {
   $scope.pickData = {};
   $scope.data = [];
   $scope.choices = [];
 
   $scope.selection = -1;
   $scope.timedOut = false;
+  $scope.choice = -1;
 
   // Autocomplete parameters
   $scope.options = null;
@@ -110,16 +115,29 @@ pickpal.controller('pickController', ['$scope', 'Yelp', function($scope, Yelp) {
   $scope.timesUp = function() {
     console.log('Times\'s up!');
     var index = Math.floor(Math.random() * $scope.choices.length);
-    // $scope.selection = index;
+    $scope.selection = index;
+    console.log('index: ', index);
     $scope.makeChoice(index);
+    $scope.choice = index;
+    console.log('selection: ', $scope.selection);
+    console.log('choice: ', $scope.choice);
     $scope.timedOut = true;
+    $scope.$apply();
   }
 
   $scope.makeChoice = function($index) {
+    console.log('make choice ran: ');
+    console.log('$index: ', $index);
     $scope.$broadcast('timer-stop');
     $scope.selection = $index;
+
+    $scope.choice = $index;
   }
-}]);
+
+  $scope.checkChoices = function() {
+    return $scope.data.length > 0;
+  }
+});
 
 // FACTORIES
 pickpal.factory('Yelp', function(YelpService, $http) {

@@ -12,7 +12,6 @@ var yelp = new Yelp({
 
 module.exports = function(server) {
   server.route('/').post(function(req, res) {
-    console.log('req.body: ', req.body);
     yelp.search(req.body)
     .then(function (data) {
       res.json(data);

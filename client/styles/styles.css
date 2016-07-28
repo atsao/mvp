@@ -42,6 +42,11 @@
   display: block;
 }
 
+
+.choices .choice-picked {
+  background: #ffcc00;
+}
+
 .timer {
   display: block;
   font-size: 2em;
