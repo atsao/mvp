@@ -11,14 +11,14 @@ var server = express();
 
 var port = process.env.PORT || 8080;
 
-server.use(morgan('dev'));
+// server.use(morgan('dev'));
 
 // Parse data as application/json
 server.use(bodyParser.json());
 
 var pickRouter = express.Router();
 
-server.use(express.static(path.join(__dirname, 'client')));
+server.use(express.static(path.resolve(__dirname, 'client')));
 
 server.use('/api/pick', pickRouter);
 require('./server/routes.js')(pickRouter);
