@@ -82,8 +82,6 @@ pickpal.controller('pickController', function($scope, Yelp) {
   }
 
   $scope.makeChoice = function($index) {
-    console.log('make choice ran: ');
-    console.log('$index: ', $index);
     $scope.$broadcast('timer-stop');
     $scope.selection = $index;
   }
