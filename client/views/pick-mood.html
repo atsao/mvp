@@ -2,7 +2,6 @@
   <label class="pick-label" for="mood">What are you in the mood for?</label>
   <div class="input-group">
     <input class="form-control" type="text" id="mood" name="term" placeholder="Enter what you're craving" tabindex=0 autofocus ng-model="pickData.term">
-    <!-- No preference? We'll automatically look for <strong>food</strong>! -->
     <span class="input-group-btn"><button class="btn btn-primary" ui-sref="pick.choose" ng-click="processForm()">Go!</button></span>
     <span class="input-group-btn"><button class="btn btn-default" ui-sref="pick.location">Back</button></span>
   </div>

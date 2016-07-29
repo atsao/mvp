@@ -1,6 +1,6 @@
 var Q = require('q');
 
-var config = require('../config');
+var config = require('../env');
 var Yelp = require('yelp');
 
 var yelp = new Yelp({
