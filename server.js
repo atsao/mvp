@@ -18,7 +18,7 @@ server.use(bodyParser.json());
 
 var pickRouter = express.Router();
 
-server.use(express.static('client'));
+server.use(express.static(path.resolve(__dirname, 'client')));
 
 server.use('/api/pick', pickRouter);
 require('./server/routes.js')(pickRouter);
