@@ -19,9 +19,12 @@ server.use(bodyParser.json());
 var pickRouter = express.Router();
 
 server.use(express.static(path.resolve(__dirname, 'client')));
-
 server.use('/api/pick', pickRouter);
 require('./server/routes.js')(pickRouter);
+
+server.all('/*', function(req, res, next) {
+  res.sendfile(__dirname + '/client/index.html');
+});
 
 server.listen(port);
 console.log("PickPal is listening on", port);
